@@ -7,7 +7,7 @@ The following kql query detects possible Registry Key Modification to Disable Ca
 ```
 DeviceRegistryEvents
 | where Timestamp >= ago(7d) 
-| where RegistryKey endswith "HKEY_LOCAL_MACHINE\\Software\\Policies\\Microsoft\\Windows Defender\\Scan"
+| where RegistryKey == "HKEY_LOCAL_MACHINE\\Software\\Policies\\Microsoft\\Windows Defender\\Scan"
 | where RegistryValueName == "DisableCatchupQuickScan"
 | where RegistryValueType == "Dword" 
 | where RegistryValueData == 1 
