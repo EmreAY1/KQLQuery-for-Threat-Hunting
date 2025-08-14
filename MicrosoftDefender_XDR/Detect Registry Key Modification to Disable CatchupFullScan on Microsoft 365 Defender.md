@@ -10,7 +10,7 @@ The following KQL query detects possible threat actors that attempt to Disable C
 ```
 DeviceRegistryEvents
 | where Timestamp >= ago(7d) 
-| where RegistryKey endswith "HKEY_LOCAL_MACHINE\\Software\\Policies\\Microsoft\\Windows Defender\\Scan"
+| where RegistryKey == "HKEY_LOCAL_MACHINE\\Software\\Policies\\Microsoft\\Windows Defender\\Scan"
 | where RegistryValueName == "DisableCatchupFullScan"
 | where RegistryValueType == "Dword" 
 | where RegistryValueData == 1 
